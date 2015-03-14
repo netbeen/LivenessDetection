@@ -6,9 +6,13 @@ using namespace cv;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    frameCount(0)
 {
     ui->setupUi(this);
+    QTimer *timer = new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(updateFrameRateLabel()));
+    timer->start(1000);
 }
 
 MainWindow::~MainWindow()
@@ -55,7 +59,9 @@ void MainWindow::on_startButton_clicked()
         cvtColor( rawImg, rawImg, COLOR_BGR2RGB );
         displayImage = QImage( static_cast<const unsigned char*>(rawImg.data), rawImg.cols, rawImg.rows, QImage::Format_RGB888 );
         ui->label->setPixmap( QPixmap::fromImage(displayImage) );
+        frameCount++;
         if (waitKey(30) >= 0);          // I add this line because the VideoCapture seems not work with out it.
+
     }
 }
 
@@ -66,4 +72,9 @@ void MainWindow::on_exitButton_clicked()
         cap.release();
     }
     ui->startButton->setEnabled(true);
+}
+
+void MainWindow::updateFrameRateLabel(){
+    ui->FrameRateLabel->setText(QString::number(frameCount, 10));
+    frameCount = 0;
 }
