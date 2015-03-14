@@ -29,6 +29,7 @@ private slots:
     void on_startButton_clicked();
     void on_exitButton_clicked();
     void updateFrameRateLabel();
+    void ESRtest();
 
 };
 
