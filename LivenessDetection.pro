@@ -13,9 +13,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+		mainwindow.cpp\
+		BoundingBox.cpp\
+		Fern.cpp\
+		FernCascade.cpp\
+		ShapeRegressor.cpp\
+		Utils.cpp
 
-HEADERS  += mainwindow.h
+
+HEADERS  += mainwindow.h \
+    ESR.hpp
 
 FORMS    += mainwindow.ui
 
@@ -25,3 +32,6 @@ INCLUDEPATH += /usr/local/include/opencv \
 LIBS += /usr/local/lib/libopencv_core.so    \
 		/usr/local/lib/libopencv_imgproc.so \
 		/usr/local/lib/libopencv_highgui.so \
+		/usr/local/lib/libopencv_objdetect.so \
+
+DISTFILES +=

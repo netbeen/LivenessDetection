@@ -18,12 +18,12 @@ public:
 
 private slots:
     void on_startButton_clicked();
-
     void on_exitButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     cv::VideoCapture cap;
+    bool isContinueCaptureVideo;
 };
 
 #endif // MAINWINDOW_H
