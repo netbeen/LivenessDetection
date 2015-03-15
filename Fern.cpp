@@ -27,6 +27,9 @@
 
 #include "ESR.hpp"
 
+using namespace std;
+using namespace cv;
+
 vector<Mat_<double> > Fern::Train(const vector<vector<double> >& candidate_pixel_intensity, const Mat_<double>& covariance, const Mat_<double>& candidate_pixel_locations,
 		const Mat_<int>& nearest_landmark_index, const vector<Mat_<double> >& regression_targets, int fern_pixel_num) {
 	// selected_pixel_index_: fern_pixel_num*2 matrix, the index of selected pixels pairs in fern

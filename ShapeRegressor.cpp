@@ -26,6 +26,9 @@
  */
 #include "ESR.hpp"
 
+using namespace std;
+using namespace cv;
+
 ShapeRegressor::ShapeRegressor() {
 	first_level_num_ = 0;
 	landmark_num_ = 0;

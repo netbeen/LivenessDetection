@@ -50,10 +50,10 @@ void MainWindow::ESRtest(){
     CascadeClassifier cascadeFrontalface;
     cascadeFrontalface.load("/home/netbeen/workspace/20141015-ESR-HelenDatabase/data/haarcascade_frontalface_alt2.xml");
     ShapeRegressor regressor;
-    regressor.load("/home/netbeen/workspace/20141015-ESR-HelenDatabase/data/model-Helen-HAAR-alt2-10-125.txt");
+    regressor.load("/home/netbeen/workspace/20141015-ESR-HelenDatabase/data/model-Helen114-HaarAlt2-10-120.txt");
 
     const int initial_number = 20;
-    const int landmarkNum = 194;
+    const int landmarkNum = 114;
     Mat rawImg,grayImg;
     QImage displayImage;
     BoundingBox boundingBox;

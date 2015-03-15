@@ -26,6 +26,10 @@
  */
 
 #include "ESR.hpp"
+
+using namespace std;
+using namespace cv;
+
 vector<Mat_<double> > FernCascade::train(const vector<Mat_<uchar> >& images, const vector<Mat_<double> >& current_shapes, const vector<Mat_<double> >& ground_truth_shapes, const vector<BoundingBox> & bounding_box, const Mat_<double>& mean_shape, int secondLevelNum, int candidate_pixel_num, int fern_pixel_num) {
 	Mat_<double> candidate_pixel_locations(candidate_pixel_num, 2);
 	Mat_<int> nearest_landmark_index(candidate_pixel_num, 1);

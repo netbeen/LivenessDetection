@@ -8,6 +8,9 @@
 
 #include "ESR.hpp"
 
+using namespace std;
+using namespace cv;
+
 bool detectFace(Mat& grayImg, CascadeClassifier& cascade, double scale, BoundingBox& boundingBox) {
 	vector<Rect> faces;
 	Mat smallImg = Mat(cvRound(grayImg.rows / scale), cvRound(grayImg.cols / scale), CV_8UC1);

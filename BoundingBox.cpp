@@ -8,13 +8,9 @@
 
 #include "ESR.hpp"
 
-BoundingBox::BoundingBox() {
-		startX = 0;
-		startY = 0;
-		width = 0;
-		height = 0;
-		centerX = 0;
-		centerY = 0;
+using namespace cv;
+
+BoundingBox::BoundingBox(): startX(0),startY(0),width(0),height(0),centerX(0),centerY(0){
 }
 
 Point_<double> BoundingBox::getStartPoint(){
