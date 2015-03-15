@@ -31,7 +31,13 @@ int train();
 int test();
 bool detectFace(cv::Mat& grayImg, cv::CascadeClassifier& cascade, double scale, BoundingBox& boundingBox);
 
+
+
+const int initial_number = 20;
+const int landmarkNum = 114;
+
 class Fern {
+
 private:
 	int fern_pixel_num_;
 	int landmark_num_;

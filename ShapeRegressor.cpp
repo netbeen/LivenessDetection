@@ -56,7 +56,7 @@ void ShapeRegressor::train(const vector<Mat_<uchar> >& images, const vector<Mat_
 	vector<Mat_<double> > augmentedGroundTruthShapes;
 	vector<Mat_<double> > currentShapes;
 
-	for (int i = 0; i < images.size(); i++) {
+    for (int i = 0; i < static_cast<int>(images.size()); i++) {
 		for (int j = 0; j < initialNum; j++) {
 			int index = (i + j + 1) % (images.size());
 			augmentedImages.push_back(images[i]);
@@ -82,7 +82,7 @@ void ShapeRegressor::train(const vector<Mat_<uchar> >& images, const vector<Mat_
 		prediction = fernCascades[i].train(augmentedImages, currentShapes, augmentedGroundTruthShapes, augmentedBoundingBox, meanShape, second_level_num, candidate_pixel_num, fern_pixel_num);
 
 		// update current shapes
-		for (int j = 0; j < prediction.size(); j++) {
+        for (int j = 0; j < static_cast<int>(prediction.size()); j++) {
 			currentShapes[j] = prediction[j] + projectShape(currentShapes[j], augmentedBoundingBox[j]);
 			currentShapes[j] = reProjectShape(currentShapes[j], augmentedBoundingBox[j]);
 		}
@@ -98,7 +98,7 @@ void ShapeRegressor::Write(ofstream& fout) {
 	fout << endl;
 
 	fout << training_shapes_.size() << endl;
-	for (int i = 0; i < training_shapes_.size(); i++) {
+    for (int i = 0; i < static_cast<int>(training_shapes_.size()); i++) {
 		fout << bounding_box_[i].startX << " " << bounding_box_[i].startY << " " << bounding_box_[i].width << " " << bounding_box_[i].height << " " << bounding_box_[i].centerX << " " << bounding_box_[i].centerY << endl;
 		for (int j = 0; j < training_shapes_[i].rows; j++) {
 			fout << training_shapes_[i](j, 0) << " " << training_shapes_[i](j, 1) << " ";

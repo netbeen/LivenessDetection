@@ -33,7 +33,7 @@ bool detectFace(Mat& grayImg, CascadeClassifier& cascade, double scale, Bounding
 Mat_<double> getMeanShape(const vector<Mat_<double> >& shapes, const vector<BoundingBox>& bounding_box) {
 	cout << "Starting GetMeanShape..." <<endl;
 	Mat_<double> result = Mat::zeros(shapes[0].rows, 2, CV_64FC1);
-	for (int i = 0; i < shapes.size(); i++) {
+    for (int i = 0; i < static_cast<int>(shapes.size()); i++) {
 		result = result + projectShape(shapes[i], bounding_box[i]);
 	}
 	result = 1.0 / shapes.size() * result;
@@ -123,13 +123,13 @@ double calculate_covariance(const vector<double>& v_1, const vector<double>& v_2
 	double exp_1 = 0;
 	double exp_2 = 0;
 	double exp_3 = 0;
-	for (int i = 0; i < v_1.size(); i++) {
+    for (int i = 0; i < static_cast<int>(v_1.size()); i++) {
 		sum_1 += v_1[i];
 		sum_2 += v_2[i];
 	}
 	exp_1 = sum_1 / v_1.size();
 	exp_2 = sum_2 / v_2.size();
-	for (int i = 0; i < v_1.size(); i++) {
+    for (int i = 0; i < static_cast<int>(v_1.size()); i++) {
 		exp_3 = exp_3 + (v_1[i] - exp_1) * (v_2[i] - exp_2);
 	}
 	return exp_3 / v_1.size();

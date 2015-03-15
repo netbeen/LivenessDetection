@@ -40,7 +40,7 @@ vector<Mat_<double> > FernCascade::train(const vector<Mat_<uchar> >& images, con
 	// calculate regression targets: the difference between ground truth shapes and current shapes
 	// candidate_pixel_locations: the locations of candidate pixels, indexed relative to its nearest landmark on mean shape
 	regressionTargets.resize(current_shapes.size());
-	for (int i = 0; i < current_shapes.size(); i++) {
+    for (int i = 0; i < static_cast<int>(current_shapes.size()); i++) {
 		regressionTargets[i] = projectShape(ground_truth_shapes[i], bounding_box[i]) - projectShape(current_shapes[i], bounding_box[i]);
 		Mat_<double> rotation;
 		double scale;
@@ -78,7 +78,7 @@ vector<Mat_<double> > FernCascade::train(const vector<Mat_<uchar> >& images, con
 	// Mat_<double> densities(images.size(), candidate_pixel_num);
 	vector<vector<double> > densities;
 	densities.resize(candidate_pixel_num);
-	for (int i = 0; i < images.size(); i++) {
+    for (int i = 0; i < static_cast<int>(images.size()); i++) {
 		Mat_<double> rotation;
 		double scale;
 		Mat_<double> temp = projectShape(current_shapes[i], bounding_box[i]);
@@ -111,7 +111,7 @@ vector<Mat_<double> > FernCascade::train(const vector<Mat_<uchar> >& images, con
 	// train ferns
 	vector<Mat_<double> > prediction;
 	prediction.resize(regressionTargets.size());
-	for (int i = 0; i < regressionTargets.size(); i++) {
+    for (int i = 0; i < static_cast<int>(regressionTargets.size()); i++) {
 		prediction[i] = Mat::zeros(mean_shape.rows, 2, CV_64FC1);
 	}
 	ferns_.resize(secondLevelNum);
@@ -119,13 +119,13 @@ vector<Mat_<double> > FernCascade::train(const vector<Mat_<uchar> >& images, con
 		cout << "Training ferns: " << i + 1 << " out of " << secondLevelNum << endl;
 		vector<Mat_<double> > temp = ferns_[i].Train(densities, covariance, candidate_pixel_locations, nearest_landmark_index, regressionTargets, fern_pixel_num);
 		// update regression targets
-		for (int j = 0; j < temp.size(); j++) {
+        for (int j = 0; j < static_cast<int>(temp.size()); j++) {
 			prediction[j] = prediction[j] + temp[j];
 			regressionTargets[j] = regressionTargets[j] - temp[j];
 		}
 	}
 
-	for (int i = 0; i < prediction.size(); i++) {
+    for (int i = 0; i < static_cast<int>(prediction.size()); i++) {
 		Mat_<double> rotation;
 		double scale;
 		SimilarityTransform(projectShape(current_shapes[i], bounding_box[i]), mean_shape, rotation, scale);

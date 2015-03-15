@@ -59,7 +59,7 @@ vector<Mat_<double> > Fern::Train(const vector<vector<double> >& candidate_pixel
 		// Mat_<double> projection_result(regression_targets.size(),1);
 		vector<double> projection_result;
 		// project regression targets along the random direction
-		for (int j = 0; j < regression_targets.size(); j++) {
+        for (int j = 0; j < static_cast<int>(regression_targets.size()); j++) {
 			double temp = 0;
 			for (int k = 0; k < regression_targets[j].rows; k++) {
 				temp = temp + regression_targets[j](k, 0) * random_direction(2 * k) + regression_targets[j](k, 1) * random_direction(2 * k + 1);
@@ -115,7 +115,7 @@ vector<Mat_<double> > Fern::Train(const vector<vector<double> >& candidate_pixel
 
 		// get threshold for this pair
 		double max_diff = -1;
-		for (int j = 0; j < candidate_pixel_intensity[max_pixel_index_1].size(); j++) {
+        for (int j = 0; j < static_cast<int>(candidate_pixel_intensity[max_pixel_index_1].size()); j++) {
 			double temp = candidate_pixel_intensity[max_pixel_index_1][j] - candidate_pixel_intensity[max_pixel_index_2][j];
 			if (abs(temp) > max_diff) {
 				max_diff = abs(temp);
@@ -129,7 +129,7 @@ vector<Mat_<double> > Fern::Train(const vector<vector<double> >& candidate_pixel
 	vector<vector<int> > shapes_in_bin;
 	int bin_num = pow(2.0, fern_pixel_num);
 	shapes_in_bin.resize(bin_num);
-	for (int i = 0; i < regression_targets.size(); i++) {
+    for (int i = 0; i < static_cast<int>(regression_targets.size()); i++) {
 		int index = 0;
 		for (int j = 0; j < fern_pixel_num; j++) {
 			double density_1 = candidate_pixel_intensity[selected_pixel_index_(j, 0)][i];
@@ -175,7 +175,7 @@ void Fern::Write(ofstream& fout) {
 		fout << selected_nearest_landmark_index_(i, 1) << endl;
 		fout << threshold_(i) << endl;
 	}
-	for (int i = 0; i < bin_output_.size(); i++) {
+    for (int i = 0; i < static_cast<int>(bin_output_.size()); i++) {
 		for (int j = 0; j < bin_output_[i].rows; j++) {
 			fout << bin_output_[i](j, 0) << " " << bin_output_[i](j, 1) << " ";
 		}
