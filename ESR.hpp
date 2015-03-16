@@ -30,6 +30,7 @@ public:
 int train();
 int test();
 bool detectFace(cv::Mat& grayImg, cv::CascadeClassifier& cascade, double scale, BoundingBox& boundingBox);
+bool detectEyes(cv::Mat& grayImg, cv::CascadeClassifier& cascade, std::vector<cv::Rect>& eyes);
 
 
 

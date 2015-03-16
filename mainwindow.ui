@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1850</width>
-    <height>850</height>
+    <height>796</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,9 +21,9 @@
     <property name="geometry">
      <rect>
       <x>515</x>
-      <y>110</y>
+      <y>100</y>
       <width>820</width>
-      <height>671</height>
+      <height>651</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -46,7 +46,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>40</y>
+       <y>30</y>
        <width>800</width>
        <height>600</height>
       </rect>
@@ -67,7 +67,7 @@
     <property name="geometry">
      <rect>
       <x>1380</x>
-      <y>660</y>
+      <y>630</y>
       <width>120</width>
       <height>121</height>
      </rect>
@@ -114,13 +114,18 @@
      <rect>
       <x>330</x>
       <y>110</y>
-      <width>141</width>
-      <height>19</height>
+      <width>161</width>
+      <height>22</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="FrameRateName">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Frame Rate:</string>
        </property>
@@ -128,6 +133,11 @@
      </item>
      <item alignment="Qt::AlignRight|Qt::AlignVCenter">
       <widget class="QLabel" name="FrameRateLabel">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -135,6 +145,11 @@
      </item>
      <item>
       <widget class="QLabel" name="FPSName">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>FPS</string>
        </property>
@@ -146,7 +161,7 @@
     <property name="geometry">
      <rect>
       <x>9</x>
-      <y>8</y>
+      <y>0</y>
       <width>1831</width>
       <height>91</height>
      </rect>
@@ -174,10 +189,86 @@ QSlider::handle:horizontal {
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>150</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Detect Face:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>190</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Blink Count:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="BlinkCountLabel">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>190</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="DetectFaceLabel">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>150</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>NO</string>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>groupBox</zorder>
    <zorder>groupBox_2</zorder>
    <zorder>horizontalSlider</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>BlinkCountLabel</zorder>
+   <zorder>DetectFaceLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
