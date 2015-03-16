@@ -44,3 +44,12 @@ Rect BoundingBox::returnRect(){
 	objectRect.height = height;
 	return objectRect;
 }
+
+Rect BoundingBox::returnUpperRect(){
+    Rect objectRect;
+    objectRect.x = startX;
+    objectRect.y = startY;
+    objectRect.width = width;
+    objectRect.height = height * 0.6;
+    return objectRect;
+}

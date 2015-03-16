@@ -14,7 +14,7 @@ using namespace cv;
 bool detectFace(Mat& grayImg, CascadeClassifier& cascade, double scale, BoundingBox& boundingBox) {
 	vector<Rect> faces;
 	Mat smallImg = Mat(cvRound(grayImg.rows / scale), cvRound(grayImg.cols / scale), CV_8UC1);
-	resize(grayImg, smallImg, smallImg.size(), 0, 0, INTER_LINEAR);
+    resize(grayImg, smallImg, smallImg.size(), 0, 0, INTER_CUBIC);
     cascade.detectMultiScale(smallImg, faces, 1.1, 2, 0 | CASCADE_DO_CANNY_PRUNING | CASCADE_FIND_BIGGEST_OBJECT | CASCADE_DO_ROUGH_SEARCH | CASCADE_SCALE_IMAGE, Size(30, 30));
 	if (faces.empty()) {
 		return false;

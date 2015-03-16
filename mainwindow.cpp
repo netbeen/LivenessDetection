@@ -53,29 +53,27 @@ void MainWindow::ESRtest(){
     cascadeEyes.load("/usr/local/share/OpenCV/haarcascades/haarcascade_eye.xml");
     ShapeRegressor regressor;
     regressor.load("/home/netbeen/workspace/20141015-ESR-HelenDatabase/data/model-Helen114-HaarAlt2-10-120.txt");
-    Mat rawImg,grayImg,faceImage;
+    Mat rawImg,grayImg,upperFaceImage;
     QImage displayImage;
     BoundingBox boundingBox;
     isContinueCaptureVideo = true;
     vector<Rect> eyesRects;
-    bool initEyes = false;
     bool isEyesClosed = true;
     int blinkCount = 0;
     while (isContinueCaptureVideo) {
         cap >> rawImg;
         cvtColor(rawImg, grayImg, COLOR_RGB2GRAY);
-        if (detectFace(grayImg, cascadeFrontalface,5, boundingBox)) {
+        if (detectFace(grayImg, cascadeFrontalface,8, boundingBox)) {
             ui->DetectFaceLabel->setText("YES");
             Mat_<double> current_shape = regressor.predict(grayImg, boundingBox, initial_number);   // Predict the shape.
             for (int i = 0; i < landmarkNum; i++) {
                 circle(rawImg, Point2d(current_shape(i, 0), current_shape(i, 1)), 3, Scalar(0, 255, 0), -1, 8, 0);
             }
             rectangle(rawImg, boundingBox.returnRect(), Scalar(0, 255, 255), 3, 8, 0);
-            faceImage = grayImg(boundingBox.returnRect());
-            if (detectEyes(faceImage, cascadeEyes,eyesRects)) {
-                initEyes = true;
+            upperFaceImage = grayImg(boundingBox.returnUpperRect());
+            if (detectEyes(upperFaceImage, cascadeEyes,eyesRects)) {
                 isEyesClosed = false;
-                for(int j = 0; j < eyesRects.size(); j++){
+                for(int j = 0; j < static_cast<int>(eyesRects.size()); j++){
                     eyesRects[j].x +=boundingBox.returnRect().x;
                     eyesRects[j].y +=boundingBox.returnRect().y;
                     rectangle(rawImg, eyesRects[j], Scalar(0, 255, 255), 3, 8, 0);
@@ -89,7 +87,6 @@ void MainWindow::ESRtest(){
             }
         }else{
             blinkCount = 0;
-            initEyes = false;
             ui->DetectFaceLabel->setText("NO");
         }
         cvtColor( rawImg, rawImg, COLOR_BGR2RGB );

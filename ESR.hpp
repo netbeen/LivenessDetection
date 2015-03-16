@@ -25,6 +25,7 @@ public:
     cv::Point_<double> getEndPoint();
     bool isInBoudingBox(cv::Point_<double> pt);
     cv::Rect returnRect();
+    cv::Rect returnUpperRect();
 };
 
 int train();
